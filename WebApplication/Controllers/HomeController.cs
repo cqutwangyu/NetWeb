@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -25,6 +23,30 @@ namespace WebApplication.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(UserInfo userInfo)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Content("error");
+            }
+            Console.WriteLine(userInfo.UserName);
+            Console.WriteLine(userInfo.Password);
+            return Content("ok");
+        }
+
+        [HttpPost]
+        public ActionResult Login(User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Content("error");
+            }
+            Console.WriteLine(user.UserName);
+            Console.WriteLine(user.Password);
+            return Content("ok");
         }
     }
 }
