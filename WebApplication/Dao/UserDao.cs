@@ -1,4 +1,6 @@
-﻿using System.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using WebApplication.Models;
 using WebApplication.Utils;
@@ -29,5 +31,12 @@ namespace WebApplication.Dao
             
             return count>0?true:false;
         }
+        public string FindByAll()
+        {
+            DataTable dt=SqlHelper.GetTable("select * from Users");
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(dt);
+            return json;
+        }
+ 
     }
 }

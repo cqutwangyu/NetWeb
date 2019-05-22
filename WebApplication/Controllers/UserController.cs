@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using WebApplication.Service;
 using WebApplication.Models;
+using System.Collections.Generic;
 
 namespace WebApplication.Controllers
 {
@@ -49,12 +50,19 @@ namespace WebApplication.Controllers
             bool reslut= userService.Login(user);
             if (reslut)
             {
-                return Content("登录成功！");
+                return View("Main");
+                return Content("<script>alert('登录成功');</script>");
             }
             else
             {
-                return Content("登录失败！");
+                return Content("<script>alert('登录失败');</script>");
             }
+        }
+
+        [HttpGet]
+        public ActionResult FindByAll()
+        {
+            return Content(userService.FindByAll());
         }
     }
 }
