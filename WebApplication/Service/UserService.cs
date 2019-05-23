@@ -22,5 +22,20 @@ namespace WebApplication.Service
         {
             return userDao.FindByAll();
         }
+
+        public string DeleteUser(string userName)
+        {
+            return userDao.DeleteUser(userName);
+        }
+
+        public string FindUserByUserName(string userName)
+        {
+            return userDao.FindUserByUserName(userName);
+        }
+
+        public bool UpdateUser(string oldName, User user)
+        {
+            return userDao.UpdateUser(oldName,user);
+        }
     }
 }

@@ -1,9 +1,77 @@
 ﻿@{
     ViewBag.Title = "Main";
 }
+<link rel="stylesheet" href="~/Content/main.css">
+<link type="text/css" rel="stylesheet" href="~/Content/font_276948_ld811uq728.css" />
 <div class="jumbotron">
-    <button id="find" class="btn btn-default">查询</button>
-    <table class="table table-striped">
-        <tr><td>用户名</td><td>密码</td><td>手机号</td><td>邮箱</td><td>操作</td></tr>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr><td>用户名</td><td>密码</td><td>手机号</td><td>邮箱</td><td>操作</td></tr>
+        </thead>
+        <tbody id="table"></tbody>
     </table>
+
+    <!-- 弹出对话框 -->
+    <div id="dialog" class="el-dialog__wrapper" style="z-index: 2005; display:none">
+        <div class="el-dialog" style="margin-top: 7vh;">
+            <!-- 弹窗头 -->
+            <div class="el-dialog__header">
+                <span id="dialogTitle" class="el-dialog__title" key="">弹窗</span>
+                <button onclick="closeDialog()" type="button" aria-label="Close" class="el-dialog__headerbtn">
+                    <i class="el-dialog__close el-icon el-icon-close"></i>
+                </button>
+            </div>
+            <!-- 弹窗体 -->
+            <div class="el-dialog__body">
+                <form class="el-form el-form--label-left" style="width: 400px; margin-left: 50px;">
+                    <div class="el-form-item is-required el-form-item--medium">
+                        <label for="type" class="el-form-item__label" style="width: 70px;">用户名</label>
+                        <div class="el-form-item__content" style="margin-left: 80px;">
+                            <div class="filter-item el-input el-input--medium" style="width: 200px;">
+                                <input id="userName" class="el-input__inner" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="el-form-item is-required el-form-item--medium">
+                        <label for="timestamp" class="el-form-item__label" style="width: 70px;">密码</label>
+                        <div class="el-form-item__content" style="margin-left: 80px;">
+                            <div class="filter-item el-input el-input--medium" style="width: 200px;">
+                                <input id="password" class="el-input__inner" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="el-form-item el-form-item--medium">
+                        <label for="title" class="el-form-item__label" style="width: 70px;">手机号</label>
+                        <div class="el-form-item__content" style="margin-left: 80px;">
+                            <div class="filter-item el-input el-input--medium" style="width: 200px;">
+                                <input id="phone" class="el-input__inner" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="el-form-item  el-form-item--medium">
+                        <label for="title" class="el-form-item__label" style="width: 80px;">邮箱</label>
+                        <div class="el-form-item__content" style="margin-left: 70px;">
+                            <div class="filter-item el-input el-input--medium" style="width: 200px;">
+                                <input id="email" class="el-input__inner" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- 弹窗尾部 -->
+            <div class="el-dialog__footer">
+                <div class="dialog-footer">
+                    <button type="button" id="dialog_no" onclick="closeDialog()" class="el-button el-button--default el-button--medium">
+                        <span>取消</span>
+                    </button>
+                    <button type="button" id="dialog_yes" class="el-button el-button--primary el-button--medium">
+                        <span>确认</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="v-modal" tabindex="0" style="z-index: 2002;display: none;"></div>
 </div>
+<script type="text/javascript">findAllUser()</script>

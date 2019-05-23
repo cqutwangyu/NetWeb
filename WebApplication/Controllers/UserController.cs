@@ -51,11 +51,10 @@ namespace WebApplication.Controllers
             if (reslut)
             {
                 return View("Main");
-                return Content("<script>alert('登录成功');</script>");
             }
             else
             {
-                return Content("<script>alert('登录失败');</script>");
+                return Content("登录失败");
             }
         }
 
@@ -63,6 +62,31 @@ namespace WebApplication.Controllers
         public ActionResult FindByAll()
         {
             return Content(userService.FindByAll());
+        }
+        public ActionResult DeleteUser(string userName)
+        {
+            return Content(userService.DeleteUser(userName));
+        }
+        public ActionResult FindUserByUserName(string userName)
+        {
+            return Content(userService.FindUserByUserName(userName));
+        }
+        public ActionResult UpdateUser(string oldName,string newName,string newPassword,string newPhone,string newEmail)
+        {
+            User user = new User();
+            user.UserName = newName;
+            user.Password = newPassword;
+            user.Phone = newPhone;
+            user.Email = newEmail;
+            bool reslut = userService.UpdateUser(oldName, user);
+            if (reslut)
+            {
+                return Content("修改成功！");
+            }
+            else
+            {
+                return Content("修改失败！");
+            }
         }
     }
 }
